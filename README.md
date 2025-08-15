@@ -36,27 +36,27 @@ npm install
 
 ```bash
 # Install dependencies for all zones
-cd main-app && npm install && cd ..
-cd blog-app && npm install && cd ..
-cd dashboard-app && npm install && cd ..
+cd main && npm install && cd ..
+cd blog && npm install && cd ..
+cd dashboard && npm install && cd ..
 ```
 
 ### 3. Environment Configuration
 
 Each zone has its own environment configuration:
 
-**main-app/.env.local:**
+**main/.env.local:**
 ```env
 BLOG_DOMAIN=http://localhost:3001
 DASHBOARD_DOMAIN=http://localhost:3002
 ```
 
-**blog-app/.env.local:**
+**blog/.env.local:**
 ```env
 PORT=3001
 ```
 
-**dashboard-app/.env.local:**
+**dashboard/.env.local:**
 ```env
 PORT=3002
 ```
@@ -71,13 +71,13 @@ npm run dev
 Or run individually:
 ```bash
 # Terminal 1 - Main App
-cd main-app && npm run dev
+cd main && npm run dev
 
 # Terminal 2 - Blog App  
-cd blog-app && npm run dev
+cd blog && npm run dev
 
 # Terminal 3 - Dashboard App
-cd dashboard-app && npm run dev
+cd dashboard && npm run dev
 ```
 
 ### 5. Access the Application
@@ -92,7 +92,7 @@ cd dashboard-app && npm run dev
 
 Each zone (except main) uses a unique `assetPrefix` to avoid static asset conflicts:
 
-**blog-app/next.config.js:**
+**blog/next.config.js:**
 ```javascript
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -107,7 +107,7 @@ module.exports = nextConfig
 
 The main app uses Next.js `rewrites` to proxy requests to other zones:
 
-**main-app/next.config.js:**
+**main/next.config.js:**
 ```javascript
 async rewrites() {
   return [
@@ -164,17 +164,17 @@ npm run clean        # Clean all node_modules and build files
 
 ### Individual Zone Scripts
 ```bash
-cd main-app
+cd main
 npm run dev          # Start main app only
 npm run build        # Build main app
 npm run start        # Start main app in production
 
-cd blog-app  
+cd blog 
 npm run dev          # Start blog app only
 npm run build        # Build blog app
 npm run start        # Start blog app in production
 
-cd dashboard-app
+cd dashboard
 npm run dev          # Start dashboard app only  
 npm run build        # Build dashboard app
 npm run start        # Start dashboard app in production
@@ -202,7 +202,7 @@ Deploy each zone to different servers/services and update environment variables:
 
 **Production Environment Variables:**
 ```env
-# main-app/.env.production
+# main/.env.production
 BLOG_DOMAIN=https://blog.yourdomain.com
 DASHBOARD_DOMAIN=https://dashboard.yourdomain.com
 ```
@@ -221,7 +221,7 @@ Each zone can be deployed independently on platforms like:
 
 Use middleware for dynamic routing based on feature flags:
 
-**main-app/middleware.js:**
+**main/middleware.js:**
 ```javascript
 import { NextResponse } from 'next/server'
 
