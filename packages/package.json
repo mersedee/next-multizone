@@ -1,0 +1,16 @@
+{
+  "name": "@multizone-app/ui",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "echo 'UI Components built'",
+    "dev": "echo 'UI Components in dev mode'"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "next": "^15.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

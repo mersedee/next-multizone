@@ -1,0 +1,23 @@
+{
+  "name": "next-multizone",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "main",
+    "blog",
+    "dashboard"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev --prefix main\" \"npm run dev --prefix blog\" \"npm run dev --prefix dashboard\"",
+    "build": "npm run build:packages && npm run build:apps",
+    "build:packages": "npm run build --workspace=packages/ui && npm run build --workspace=packages/shared-utils",
+    "build:apps": "npm run build --prefix main && npm run build --prefix blog && npm run build --prefix dashboard",
+    "clean": "npm run clean:packages && npm run clean:apps",
+    "clean:packages": "rm -rf packages/*/dist packages/*/node_modules",
+    "clean:apps": "rm -rf main/.next blog/.next dashboard/.next",
+    "install:all": "npm install && npm install --prefix main && npm install --prefix blog && npm install --prefix dashboard"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+}
